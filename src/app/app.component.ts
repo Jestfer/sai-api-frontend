@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { TopicsService } from '../services/topics.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 export class AppComponent {
   title = 'Courses by Topic';
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private topicsService: TopicsService) { }
 
   openDialog() {
     const dialogConfig = new MatDialogConfig();
