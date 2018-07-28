@@ -21,7 +21,6 @@ export class AppComponent {
     // desde 3 sitios distinto o así, pero en este caso es solo desde la app
       .subscribe((topicsData: any) => {
         this.topics = topicsData;
-        console.log(this.topics);
       });
   }
 
