@@ -19,7 +19,7 @@ export class AppComponent {
     // y que ya está en JSON, la app está pendiente de los cambios...
     // El subscribe tendría más sentido en el Servicio si lo llamáramos a este
     // desde 3 sitios distinto o así, pero en este caso es solo desde la app
-      .subscribe((topicsData: any) => {
+      .subscribe((topicsData: Response) => {
         this.topics = topicsData;
       });
   }

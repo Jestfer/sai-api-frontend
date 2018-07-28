@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { FormBuilder, ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -13,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatInputModule } from '../../node_modules/@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 
 // Custom components
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
