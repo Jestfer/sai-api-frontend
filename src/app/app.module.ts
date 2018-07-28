@@ -7,6 +7,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormBuilder, ReactiveFormsModule } from '../../node_modules/@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,9 +21,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatGridListModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [FormBuilder],
+  bootstrap: [AppComponent],
+  entryComponents: [CourseDialogComponent]
 })
 export class AppModule { }
