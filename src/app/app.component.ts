@@ -17,6 +17,7 @@ export class AppComponent {
 
     dialogConfig.disableClose = true; // Dialog not closed when clicking outside
     dialogConfig.autoFocus = true; // Autofocus on first form field of Dialog
+    dialogConfig.width = '50%';
 
     const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
 
