@@ -4,15 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CourseDialogComponent
   ],
   imports: [
     BrowserModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
