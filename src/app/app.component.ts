@@ -13,7 +13,6 @@ export class AppComponent {
   constructor(private dialog: MatDialog) { }
 
   openDialog() {
-
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true; // Dialog not closed when clicking outside
