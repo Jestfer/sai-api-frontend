@@ -13,10 +13,11 @@ export class TopicsService {
   constructor(private http: HttpClient) {
     // function to bring topics, getTopics
     this.getTopics();
-    // Cómo manejar los Observers, "off", para usarlo solo una vez
-   }
+  }
 
   getTopics() {
-    this.topics = topicsData;
+    // Cómo manejar los Observers, "of", para usarlo solo una vez
+    // get siempre devuelve un Observer
+    return this.http.get('http://localhost:8089/topics');
   }
 }

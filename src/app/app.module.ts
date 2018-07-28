@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 import { FormBuilder, ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
@@ -20,6 +21,7 @@ import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 // Custom services
 import { TopicsService } from '../services/topics.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,7 @@ import { TopicsService } from '../services/topics.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
@@ -36,7 +39,11 @@ import { TopicsService } from '../services/topics.service';
     MatInputModule,
     ReactiveFormsModule
   ],
-  providers: [FormBuilder, TopicsService],
+  providers: [
+    FormBuilder,
+    TopicsService,
+    HttpClient
+  ],
   bootstrap: [AppComponent],
   entryComponents: [CourseDialogComponent]
 })
