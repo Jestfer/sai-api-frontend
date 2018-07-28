@@ -19,6 +19,10 @@ export class AppComponent {
     dialogConfig.disableClose = true; // Dialog not closed when clicking outside
     dialogConfig.autoFocus = true; // Autofocus on first form field of Dialog
 
-    this.dialog.open(CourseDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => console.log('Dialog output:', data)
+    );
   }
 }
