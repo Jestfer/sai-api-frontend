@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '../../../node_modules/@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '../../../node_modules/@angular/forms';
 import { MatDialogRef } from '../../../node_modules/@angular/material';
 
 @Component({
@@ -13,10 +13,14 @@ export class CourseDialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<CourseDialogComponent>
+    private dialogRef: MatDialogRef<CourseDialogComponent>,
   ) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      name: new FormControl(),
+      description: new FormControl()
+    });
   }
 
   save() {
