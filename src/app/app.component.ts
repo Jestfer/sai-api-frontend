@@ -9,8 +9,9 @@ import { TopicsService } from '../services/topics.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Courses by Topic';
+  title: String = 'Courses by Topic';
   topics: any = [];
+  imgUrl: String = 'https://source.unsplash.com/800x600/?';
 
   constructor(private dialog: MatDialog, private topicsService: TopicsService) {
     this.topics = topicsService.getTopics()

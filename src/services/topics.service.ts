@@ -21,7 +21,7 @@ export class TopicsService {
     // get siempre devuelve un Observer
     return this.http.get('http://localhost:8089/topics')
       .pipe(
-        // Map para tratar los datos que llegan
+        // Map para tratar los datos que llegan, aunque esto no hace demasiado
         map((n: Response) => n)
       );
   }
