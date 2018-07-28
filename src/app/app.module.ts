@@ -2,15 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatDialogModule } from '@angular/material/dialog';
-import { CourseDialogComponent } from './course-dialog/course-dialog.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FormBuilder, ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Angular Material
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '../../node_modules/@angular/material/input';
+
+// Custom components
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +24,13 @@ import { MatInputModule } from '../../node_modules/@angular/material/input';
   ],
   imports: [
     BrowserModule,
-    MatCardModule,
-    MatGridListModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatInputModule,
     ReactiveFormsModule
   ],
   providers: [FormBuilder],

@@ -25,6 +25,7 @@ export class CourseDialogComponent implements OnInit {
 
   save() {
     this.dialogRef.close(this.form.value);
+    console.log(this.form);
   }
 
   close() {
