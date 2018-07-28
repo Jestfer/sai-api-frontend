@@ -17,6 +17,9 @@ import { MatInputModule } from '../../node_modules/@angular/material/input';
 // Custom components
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 
+// Custom services
+import { TopicsService } from '../services/topics.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +36,7 @@ import { CourseDialogComponent } from './course-dialog/course-dialog.component';
     MatInputModule,
     ReactiveFormsModule
   ],
-  providers: [FormBuilder],
+  providers: [FormBuilder, TopicsService],
   bootstrap: [AppComponent],
   entryComponents: [CourseDialogComponent]
 })
