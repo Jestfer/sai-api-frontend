@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormBuilder, ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { MatInputModule } from '../../node_modules/@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormBuilder, ReactiveFormsModule } from '../../node_modules/@angular/fo
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatInputModule,
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
