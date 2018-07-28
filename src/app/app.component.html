@@ -1,44 +1,20 @@
 <h1>Your {{ title }}!</h1>
 
 <mat-grid-list cols="3" rowHeight="1:1">
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Card title</mat-card-title>
-      </mat-card-header>
+  <ng-container *ngFor="let topic of topics">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ topic.name }}</mat-card-title>
+        </mat-card-header>
 
-      <img mat-card-image src="https://source.unsplash.com/random/800x600">
-      <mat-card-content>
-        <p>Hello, I'm a card</p>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Card title</mat-card-title>
-      </mat-card-header>
-
-      <img mat-card-image src="https://source.unsplash.com/random/800x600">
-      <mat-card-content>
-        <p>Hello, I'm a card</p>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-
-  <mat-grid-tile>
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Card title</mat-card-title>
-      </mat-card-header>
-
-      <img mat-card-image src="https://source.unsplash.com/random/800x600">
-      <mat-card-content>
-        <p>Hello, I'm a card</p>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
+        <img mat-card-image src="https://source.unsplash.com/random/800x600">
+        <mat-card-content>
+          <p>{{ topic.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </ng-container>
 </mat-grid-list>
 
 <button mat-raised-button color="primary" (click)="openDialog()">Add course</button>
