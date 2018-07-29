@@ -21,11 +21,13 @@ import { MatSelectModule } from '@angular/material/select';
 // Custom components
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { CourseComponent } from './course/course.component';
+import { TopicsComponent } from './topics/topics.component';
 
 // Custom services
 import { TopicsService } from '../services/topics.service';
 
 const appRoutes: Routes = [
+  { path: '', component: TopicsComponent },
   { path: 'courses', component: CourseComponent }
 ];
 
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CourseDialogComponent,
-    CourseComponent
+    CourseComponent,
+    TopicsComponent
   ],
   imports: [
     BrowserModule,
