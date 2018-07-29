@@ -28,7 +28,7 @@ import { TopicsService } from '../services/topics.service';
 
 const appRoutes: Routes = [
   { path: '', component: TopicsComponent },
-  { path: 'courses', component: CourseComponent }
+  { path: 'courses/:id', component: CourseComponent }
 ];
 
 @NgModule({

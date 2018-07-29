@@ -16,11 +16,11 @@ export class TopicsComponent implements OnDestroy {
   imgUrl: String = 'https://source.unsplash.com/800x600/?';
 
   constructor(private dialog: MatDialog, private topicsService: TopicsService) {
+    // Nos suscribimos en el componente y manejamos el objeto que nos llega
+    // y que ya está en JSON, la app está pendiente de los cambios...
+    // El subscribe tendría más sentido en el Servicio si lo llamáramos a este
+    // desde 3 sitios distinto o así, pero en este caso es solo desde la app
     this.obs$ = topicsService.getTopics()
-      // Nos suscribimos en el componente y manejamos el objeto que nos llega
-      // y que ya está en JSON, la app está pendiente de los cambios...
-      // El subscribe tendría más sentido en el Servicio si lo llamáramos a este
-      // desde 3 sitios distinto o así, pero en este caso es solo desde la app
       .subscribe((topicsData: Response) => {
         this.topics = topicsData;
       });

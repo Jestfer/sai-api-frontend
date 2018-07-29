@@ -1,6 +1,6 @@
 <h1>COURSES!</h1>
 
-<mat-grid-list cols="3" rowHeight="1:1">
+<mat-grid-list cols="3" rowHeight="1:1" *ngIf="courses.length">
   <ng-container *ngFor="let course of courses">
     <mat-grid-tile>
       <mat-card>
