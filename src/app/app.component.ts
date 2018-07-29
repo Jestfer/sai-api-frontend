@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnDestroy {
-
   title: String = 'Courses by Topic';
   topics: any = [];
   private obs$: Subscription = null;

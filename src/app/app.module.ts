@@ -7,6 +7,8 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+import { RouterModule, Routes } from '@angular/router';
+
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -18,15 +20,20 @@ import { MatSelectModule } from '@angular/material/select';
 
 // Custom components
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { CourseComponent } from './course/course.component';
 
 // Custom services
 import { TopicsService } from '../services/topics.service';
 
+const appRoutes: Routes = [
+  { path: 'courses', component: CourseComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CourseDialogComponent
+    CourseDialogComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,8 @@ import { TopicsService } from '../services/topics.service';
     MatGridListModule,
     MatInputModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     FormBuilder,
