@@ -3,7 +3,7 @@
 <mat-dialog-content [formGroup]="form">
   <mat-form-field>
     <mat-select placeholder="Select a topic">
-      <mat-option *ngFor="let topic of topics" formControlName="id">
+      <mat-option *ngFor="let topic of topics" [value]="topic.name" formControlName="id">
         {{topic.name}}
       </mat-option>
     </mat-select>

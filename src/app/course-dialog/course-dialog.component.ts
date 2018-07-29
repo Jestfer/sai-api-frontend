@@ -24,15 +24,10 @@ export class CourseDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<CourseDialogComponent>,
     private topicsService: TopicsService,
     private course: CoursesService
-  ) {
-    this.topics = topicsService.getTopics()
-      .subscribe((topicsData: Response) => {
-        this.topics = topicsData;
-        // TODO: handle error
-      });
-   }
+  ) {  }
 
   ngOnInit() {
+    this.topics = this.topicsService.topics;
     this.form = this.fb.group({
       id: incrementId += 1,
       name: new FormControl(),
