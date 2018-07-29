@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { CoursesService } from '../../services/courses.service';
 import { TopicsService } from '../../services/topics.service';
+import { Subscription } from '../../../node_modules/rxjs';
 
 // TODO: change this and make it autoincrement in Spring Boot
 let incrementId = 0;
@@ -13,9 +14,9 @@ let incrementId = 0;
   styleUrls: ['./course-dialog.component.css']
 })
 
-export class CourseDialogComponent implements OnInit {
+export class CourseDialogComponent implements OnInit, OnDestroy {
   form: FormGroup;
-
+  private obs$: Subscription = null;
   topics: any = [];
   courses: any[] = [];
 
@@ -24,10 +25,19 @@ export class CourseDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<CourseDialogComponent>,
     private topicsService: TopicsService,
     private course: CoursesService
-  ) {  }
+  ) { }
+
+  ngOnDestroy(): void {
+    // Optimizar la memoria, la suscripción al observable del servicio se elimina
+    this.obs$.unsubscribe();
+  }
 
   ngOnInit() {
-    this.topics = this.topicsService.topics;
+    this.obs$ = this.topicsService.getTopics()
+      .subscribe((topicsData: Response) => {
+        this.topics = topicsData;
+      });
+
     this.form = this.fb.group({
       id: incrementId += 1,
       name: new FormControl(),
