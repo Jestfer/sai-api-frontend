@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CourseDialogComponent } from '../app/course-dialog/course-dialog.component';
 import { Observable } from 'rxjs';
+import { CourseComponent } from '../app/course/course.component';
 
 // NOT NEEDED, just maybe if the server requires authentication tokens to post, or similar
 // const httpOptions = {
@@ -22,5 +23,9 @@ export class CoursesService {
    addCourse(course: any): Observable<CourseDialogComponent> {
      this.courseData = this.http.post<CourseDialogComponent>(`http://localhost:8089/topics/${course.topicId}/courses`, course);
      return this.courseData;
+   }
+
+   getCourses(topicId: Number) {
+     return this.http.get(`http://localhost:8089/topics/${topicId}/courses`);
    }
 }
