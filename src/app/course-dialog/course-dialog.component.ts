@@ -5,9 +5,6 @@ import { CoursesService } from '../../services/courses.service';
 import { TopicsService } from '../../services/topics.service';
 import { Subscription } from 'rxjs';
 
-// TODO: change this and make it autoincrement in Spring Boot
-let incrementId = 0;
-
 @Component({
   selector: 'app-course-dialog',
   templateUrl: './course-dialog.component.html',
@@ -40,7 +37,6 @@ export class CourseDialogComponent implements OnInit, OnDestroy {
 
     this.form = this.fb.group({
       topicId: new FormControl(),
-      id: incrementId += 1,
       name: new FormControl(),
       description: new FormControl()
     });
