@@ -34,8 +34,8 @@ export class AppComponent {
 
     const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(
-      data => console.log('Dialog output:', data)
-    );
+    // dialogRef.afterClosed().subscribe(
+    //   data => console.log('Dialog output:', data)
+    // );
   }
 }

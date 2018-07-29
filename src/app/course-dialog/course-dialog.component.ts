@@ -25,7 +25,7 @@ export class CourseDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      id: incrementId++,
+      id: incrementId += 1,
       name: new FormControl(),
       description: new FormControl()
     });
