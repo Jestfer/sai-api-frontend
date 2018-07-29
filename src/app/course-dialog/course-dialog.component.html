@@ -2,6 +2,14 @@
 
 <mat-dialog-content [formGroup]="form">
   <mat-form-field>
+    <mat-select placeholder="Select a topic">
+      <mat-option *ngFor="let topic of topics" formControlName="id">
+        {{topic.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
     <input matInput placeholder="Course Name" formControlName="name">
   </mat-form-field>
   

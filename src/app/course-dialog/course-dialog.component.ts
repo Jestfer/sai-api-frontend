@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { CoursesService } from '../../services/courses.service';
+import { TopicsService } from '../../services/topics.service';
 
 // TODO: change this and make it autoincrement in Spring Boot
 let incrementId = 0;
@@ -13,15 +14,23 @@ let incrementId = 0;
 })
 
 export class CourseDialogComponent implements OnInit {
-
   form: FormGroup;
+
+  topics: any = [];
   courses: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CourseDialogComponent>,
+    private topicsService: TopicsService,
     private course: CoursesService
-  ) { }
+  ) {
+    this.topics = topicsService.getTopics()
+      .subscribe((topicsData: Response) => {
+        this.topics = topicsData;
+        // TODO: handle error
+      });
+   }
 
   ngOnInit() {
     this.form = this.fb.group({

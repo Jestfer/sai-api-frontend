@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 // Custom components
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
@@ -37,6 +38,7 @@ import { TopicsService } from '../services/topics.service';
     MatFormFieldModule,
     MatGridListModule,
     MatInputModule,
+    MatSelectModule,
     ReactiveFormsModule
   ],
   providers: [
