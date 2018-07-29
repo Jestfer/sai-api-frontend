@@ -17,10 +17,9 @@ import { Observable } from 'rxjs';
 export class CoursesService {
   courseData: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
    addCourse(course: any): Observable<CourseDialogComponent> {
-     // Id needs to be handled
      this.courseData = this.http.post<CourseDialogComponent>(`http://localhost:8089/topics/${course.topicId}/courses`, course);
      return this.courseData;
    }

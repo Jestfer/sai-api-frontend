@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { CoursesService } from '../../services/courses.service';
 import { TopicsService } from '../../services/topics.service';
-import { Subscription } from '../../../node_modules/rxjs';
+import { Subscription } from 'rxjs';
 
 // TODO: change this and make it autoincrement in Spring Boot
 let incrementId = 0;
@@ -47,16 +47,7 @@ export class CourseDialogComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    // Set topicId - Maybe need to make name unique
-    this.topics.forEach(el => {
-      if (el.name === this.form.value.topicId) {
-        this.form.value.topicId = el.id;
-      }
-    });
-
     this.dialogRef.close(this.form.value);
-    console.log(this.form.value);
-
     this.course.addCourse(this.form.value)
       .subscribe(newCourse => this.courses.push(newCourse));
   }
