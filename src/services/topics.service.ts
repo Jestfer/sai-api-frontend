@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,17 +23,19 @@ export class TopicsService {
         .subscribe(
           (topicsData: any) => {
             this.topics = topicsData;
-            // emite un evento de que se ha modificado topics, y lo mandamos
+            // emite (el next es el emisor) un evento de que se ha modificado topics, y lo mandamos
             this.obs.next(this.topics);
           }
         );
     } else {
-      // Decirle al componente q como hay topics, mandamos el siguiente
-      // y el componente reacciona
+      // Decirle al componente q como hay topics, mandamos el siguiente y que reaccione
 
       // PROGRAMACIÓN BASADA EN ESTADOS
       // Los servicios son los que se encargan del movimiento y transformación de datos
       // Los componentes reaccionan para pintar
+
+      // Si metemos un nuevo observable aquí, el servicio no tiene el control sobre
+      // el observado... hay que intentar trabajar solo con un observable
       return new Observable((observ) => observ.next(this.topics));
     }
 

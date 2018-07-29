@@ -39,6 +39,7 @@ export class CourseDialogComponent implements OnInit, OnDestroy {
       });
 
     this.form = this.fb.group({
+      topicId: new FormControl(),
       id: incrementId += 1,
       name: new FormControl(),
       description: new FormControl()
@@ -46,7 +47,16 @@ export class CourseDialogComponent implements OnInit, OnDestroy {
   }
 
   save() {
+    // Set topicId - Maybe need to make name unique
+    this.topics.forEach(el => {
+      if (el.name === this.form.value.topicId) {
+        this.form.value.topicId = el.id;
+      }
+    });
+
     this.dialogRef.close(this.form.value);
+    console.log(this.form.value);
+
     this.course.addCourse(this.form.value)
       .subscribe(newCourse => this.courses.push(newCourse));
   }

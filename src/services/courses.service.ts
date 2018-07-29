@@ -17,13 +17,11 @@ import { Observable } from 'rxjs';
 export class CoursesService {
   courseData: any;
 
-  constructor(private http: HttpClient) {
-    this.addCourse(this.courseData);
-   }
+  constructor(private http: HttpClient) {}
 
-   addCourse(course: CourseDialogComponent): Observable<CourseDialogComponent> {
+   addCourse(course: any): Observable<CourseDialogComponent> {
      // Id needs to be handled
-     this.courseData = this.http.post<CourseDialogComponent>('http://localhost:8089/topics/1/courses', course);
+     this.courseData = this.http.post<CourseDialogComponent>(`http://localhost:8089/topics/${course.topicId}/courses`, course);
      return this.courseData;
    }
 }
