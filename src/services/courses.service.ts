@@ -3,18 +3,27 @@ import { HttpClient } from '@angular/common/http';
 import { CourseDialogComponent } from '../app/course-dialog/course-dialog.component';
 import { Observable } from 'rxjs';
 
-// TODO: change this and make it autoincrement in Spring Boot
-// let id: Number = 0;
+// NOT NEEDED, just maybe if the server requires authentication tokens to post, or similar
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Content-Type': 'application/json',
+//     'Authorization': 'my-auth-token'
+//   })
+// };
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
+  courseData: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.addCourse(this.courseData);
+   }
 
    addCourse(course: CourseDialogComponent): Observable<CourseDialogComponent> {
      // Id needs to be handled
-     return this.http.post<CourseDialogComponent>('/topics/1/courses', course);
+     this.courseData = this.http.post<CourseDialogComponent>('http://localhost:8089/topics/1/courses', course);
+     return this.courseData;
    }
 }
