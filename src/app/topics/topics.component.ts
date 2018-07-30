@@ -26,6 +26,8 @@ export class TopicsComponent implements OnDestroy {
       });
   }
 
+  // ESTO DESTRUYE EL observable que recibimos del servicio una vez cambiemos de vista
+  // o cerremos la aplicación, es decir, cuando se elimina el componente
   ngOnDestroy(): void {
     this.obs$.unsubscribe();
   }
