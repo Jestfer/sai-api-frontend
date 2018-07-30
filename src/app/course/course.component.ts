@@ -18,9 +18,7 @@ export class CourseComponent implements OnDestroy, OnInit {
 
   constructor(private courseService: CoursesService, private actRoute: ActivatedRoute) { }
 
-  // Usamos observables distintos, por eso 2 subscribe
   loadCourses(id: any) {
-    // le asignamos el observable que vamos a destruir al subscriptor
     this.obs$ = this.courseService.getCoursesByTopic(id)
       .subscribe((data: any ) => {
         this.courses = data;

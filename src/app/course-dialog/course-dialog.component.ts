@@ -25,7 +25,6 @@ export class CourseDialogComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnDestroy(): void {
-    // Optimizar la memoria, la suscripción al observable del servicio se elimina
     this.obs$.unsubscribe();
   }
 

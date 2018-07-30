@@ -3,15 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-
-// NOT NEEDED, just maybe if the server requires authentication tokens to post, or similar
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     'Content-Type': 'application/json',
-//     'Authorization': 'my-auth-token'
-//   })
-// };
-
 @Injectable({
   providedIn: 'root'
 })
