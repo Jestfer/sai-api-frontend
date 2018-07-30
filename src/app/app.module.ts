@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 // Custom components
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { TopicDialogComponent } from './topic-dialog/topic-dialog.component';
 import { CourseComponent } from './course/course.component';
 import { TopicsComponent } from './topics/topics.component';
 
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CourseDialogComponent,
+    TopicDialogComponent,
     CourseComponent,
     TopicsComponent
   ],
@@ -58,6 +60,6 @@ const appRoutes: Routes = [
     HttpClient
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CourseDialogComponent]
+  entryComponents: [CourseDialogComponent, TopicDialogComponent]
 })
 export class AppModule { }

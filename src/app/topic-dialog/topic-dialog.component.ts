@@ -28,8 +28,14 @@ export class TopicDialogComponent implements OnInit {
 
   save() {
     this.dialogRef.close(this.form.value);
+
     this.topic.addTopic(this.form.value)
-      .subscribe(newTopic => this.topics.push(newTopic));
+    // Cuando llega el OK, con el subscribe que tenemos...
+    // Ejecutemos el refresh del servicio...
+      // Mandamos el post primero, pero cogemos los cambios cuando llegan
+      // El getTopics que volvemos a llamar en el servicio se encarga...
+      // TOdos están suscritos y se manejan los cambios
+      .subscribe(() => this.topic.refresh());
   }
 
   close() {
