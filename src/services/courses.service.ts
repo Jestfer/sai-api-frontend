@@ -23,7 +23,7 @@ export class CoursesService {
      return this.http.post<any>(`http://localhost:8089/topics/${course.topicId}/courses`, course);
    }
 
-   getCourses(topicId: any) {
+   getCoursesByTopic(topicId: any) {
      return this.http.get(`http://localhost:8089/topics/${topicId}/courses`);
    }
 }
