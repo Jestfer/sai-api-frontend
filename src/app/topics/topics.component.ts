@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { CourseDialogComponent } from '.././course-dialog/course-dialog.component';
+import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { TopicsService } from '../../services/topics.service';
 import { Subscription } from 'rxjs';
 
@@ -26,7 +26,7 @@ export class TopicsComponent implements OnDestroy {
     this.obs$.unsubscribe();
   }
 
-  openDialog() {
+  openCourseDialog() {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;

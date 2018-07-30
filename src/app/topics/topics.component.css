@@ -14,3 +14,9 @@ a {
 .mat-card-content {
   font-size: 1em;
 }
+
+.buttons-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+}
