@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,8 @@ export class TopicsService {
 
       // Si metemos un nuevo observable aquí, el servicio no tiene el control sobre
       // el observado... hay que intentar trabajar solo con un observable
-      return new Observable((observ) => observ.next(this.topics));
+      return of(this.topics);
+      // return new Observable((observ) => observ.next(this.topics));
     }
 
     // Se transforma en Observable para emitirlo y q el componente lo maneje con el subscribe

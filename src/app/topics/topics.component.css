@@ -2,6 +2,10 @@ h1 {
   text-align: center;
 }
 
+a {
+  text-decoration: none;
+}
+
 .mat-card-title {
   font-weight: bold;
   font-size: 1.5em;
