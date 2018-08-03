@@ -12,7 +12,7 @@ const topicsServiceStub = {
   }
 };
 
-fdescribe('TopicsComponent', () => {
+xdescribe('TopicsComponent', () => {
   let component: TopicsComponent;
   let fixture: ComponentFixture<TopicsComponent>;
 
