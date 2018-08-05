@@ -11,7 +11,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { TopicsService } from './topics.service';
 import { Data } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 
 const testUrl = '/data';
 const topicsUrl = 'http://localhost:8089/topics';
@@ -90,7 +89,6 @@ describe('TopicsService', () => {
       // getTopics must return Obs with mockResponse data, nos suscribimos y esperamos que sea eso
       service.getTopics()
         .subscribe(topicData => {
-          console.log(topicData);
           expect(topicData.name).toEqual('Chess');
           expect(topicData.description).toEqual('My chess courses');
         });
