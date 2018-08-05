@@ -1,10 +1,9 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { CoursesService } from './courses.service';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 
-let httpClient;
 let httpTestingController;
 let service;
 
@@ -15,7 +14,6 @@ describe('CoursesService', () => {
       imports: [HttpClientTestingModule]
     });
 
-    httpClient = TestBed.get(HttpClient);
     httpTestingController = TestBed.get(HttpTestingController);
     service = TestBed.get(CoursesService);
   });
