@@ -13,8 +13,10 @@ import { TopicsService } from './topics.service';
 import { Data } from '@angular/router';
 
 const testUrl = '/data';
+const topicsUrl = 'http://localhost:8089/topics';
 let httpClient;
 let httpTestingController;
+let service;
 
 describe('TopicsService', () => {
   beforeEach(() => {
@@ -28,6 +30,7 @@ describe('TopicsService', () => {
     // Inject the http service and test controller for each test
     httpClient = TestBed.get(HttpClient);
     httpTestingController = TestBed.get(HttpTestingController);
+    service = TestBed.get(TopicsService);
   });
 
   afterEach(() => {
@@ -35,22 +38,24 @@ describe('TopicsService', () => {
     httpTestingController.verify();
   });
 
-  it('should be created', inject([TopicsService], (service: TopicsService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
 
   it('can test HttpClient get req', () => {
     const testData: Data = { name: 'Test Data' };
 
     // Make an HTTP GET req
-    httpClient.get<Data>(testUrl)
+      // httpClient.get<Data>(testUrl) : is giving warning:
+      // ERROR in src/services/topics.service.spec.ts(46,5): error TS2347: Untyped function calls may not accept type arguments.
+    httpClient.get(testUrl)
       .subscribe(data =>
         // When observable resolves, result should match testData
         expect(data).toEqual(testData)
       );
 
     // expectOne() will match req's URL, if not, expectOne() would throw
-    const req = httpTestingController.expectOne('/data');
+    const req = httpTestingController.expectOne(testUrl);
 
     // Assert that req is a GET
     expect(req.request.method).toEqual('GET');
@@ -72,6 +77,35 @@ describe('TopicsService', () => {
       method: 'GET'
     });
   }));
+
+  describe('#getTopics()', () => {
+    it('should return a BehaviorSubject<any<Topic>>', () => {
+      const mockResponse = {
+        name: 'Chess',
+        description: 'My chess courses'
+      };
+
+      // getTopics must return Obs with mockResponse data, nos suscribimos y esperamos que sea eso
+      service.getTopics()
+        .subscribe(topicData => {
+          // debugger;
+          // expect(topicData.length).toBe(1);
+          // expect(topicData.name).toEqual('Chess');
+          // expect(topicData.description).toEqual('My chess courses');
+          expect(topicData).toEqual({
+            name: 'Chess',
+            description: 'My chess courses'
+          });
+          console.log(topicData, 'test');
+        });
+
+      const req = httpTestingController.expectOne(topicsUrl);
+
+      expect(req.request.method).toEqual('GET');
+
+      req.flush(mockResponse);
+    });
+  });
 });
 
 
