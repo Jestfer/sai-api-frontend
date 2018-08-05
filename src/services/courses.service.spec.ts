@@ -29,19 +29,20 @@ describe('CoursesService', () => {
   // 2. getCoursesByTopic() => la info del topic.id la tiene el TopicComponent, q es donde paso el param en el routing, igual pensar el test
   describe('#addCourse()', () => {
     it('should return Observable<any>', () => {
-      // const topicId = 1;
+      const topicId = 1;
 
       const mockCourse = {
         name: 'Chessable',
         description: 'Space repetition to learn chess'
       };
 
-      service.addCourse()
+      // Lo que pasamos al addCourse es el objeto del curso del Catalog, q tiene su topicId registrado!
+      service.addCourse({topicId: 1})
         .subscribe(courseData => {
           expect(courseData.name).toEqual('Chessable');
         });
 
-      const req = httpTestingController.expectOne('http://localhost:8089/{{topicId}}/1/courses');
+      const req = httpTestingController.expectOne(`http://localhost:8089/topics/${topicId}/courses`);
 
       expect(req.request.method).toEqual('POST');
 
