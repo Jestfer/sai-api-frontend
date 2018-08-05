@@ -11,20 +11,18 @@ export class TopicsService {
 
   constructor(private http: HttpClient) {}
 
-  getTopics(): Observable<any> {
+  getTopics(): BehaviorSubject<any> {
     if (!this.topics.length) {
-      return this.http.get('http://localhost:8089/topics')
-    //     .subscribe(
-    //       (topicsData: any) => {
-    //         console.log(topicsData);
-
-    //         this.topics = topicsData;
-    //         this.obs.next(this.topics);
-    //       }
-    //     );
+      this.http.get('http://localhost:8089/topics')
+        .subscribe(
+          (topicsData: any) => {
+            this.topics = topicsData;
+            this.obs.next(this.topics);
+          }
+        );
     }
 
-    // return this.obs;
+    return this.obs;
   }
 
   // Refresh, los otros componentes escuchan el cambio y se actualizan
