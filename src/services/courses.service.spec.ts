@@ -20,6 +20,10 @@ describe('CoursesService', () => {
     service = TestBed.get(CoursesService);
   });
 
+  afterEach(() => {
+    httpTestingController.verify();
+  });
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -29,8 +33,6 @@ describe('CoursesService', () => {
   // 2. getCoursesByTopic() => la info del topic.id la tiene el TopicComponent, q es donde paso el param en el routing, igual pensar el test
   describe('#addCourse()', () => {
     it('should return Observable<any>', () => {
-      const topicId = 1;
-
       const mockCourse = {
         name: 'Chessable',
         description: 'Space repetition to learn chess'
@@ -42,13 +44,32 @@ describe('CoursesService', () => {
           expect(courseData.name).toEqual('Chessable');
         });
 
-      const req = httpTestingController.expectOne(`http://localhost:8089/topics/${topicId}/courses`);
+      const req = httpTestingController.expectOne('http://localhost:8089/topics/1/courses');
 
       expect(req.request.method).toEqual('POST');
 
       req.flush(mockCourse);
+    });
+  });
 
-      httpTestingController.verify();
+  describe('#getCoursesByTopic', () => {
+    it('should return Observable<any>', () => {
+      const mockCourses = [
+        { name: 'Chessable', description: 'Space repetition to learn chess' },
+        { name: 'ICC', description: 'Play chess online' }
+      ];
+
+      service.getCoursesByTopic(1)
+        .subscribe(coursesData => {
+          expect(coursesData[0].name).toEqual('Chessable');
+          expect(coursesData[0].description).toEqual('Space repetition to learn chess');
+          expect(coursesData[1].name).toEqual('ICC');
+          expect(coursesData[1].description).toEqual('Play chess online');
+        });
+
+      const req = httpTestingController.expectOne('http://localhost:8089/topics/1/courses');
+
+      req.flush(mockCourses);
     });
   });
 });
