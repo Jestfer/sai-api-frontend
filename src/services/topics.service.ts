@@ -22,6 +22,7 @@ export class TopicsService {
         );
     }
 
+    // Esto es lo primero q devuelve el test
     return this.obs;
   }
 

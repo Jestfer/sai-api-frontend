@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { CoursesService } from './courses.service';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
 
 let httpTestingController;
 let service;

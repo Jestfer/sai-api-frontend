@@ -78,9 +78,15 @@ describe('TopicsService', () => {
     });
   }));
 
-  xdescribe('#getTopics()', () => {
+  describe('#getTopics()', () => {
     // works with simple return http.get in topics.service.ts
     it('should return a BehaviorSubject<any<Topic>>', () => {
+      // LAST: mockeamos la llamada con método GET y devolvemos esto
+      const spy = spyOn(httpClient, 'get').and.returnValue([{
+        name: 'Chess',
+        description: 'My chess courses'
+      }]);
+
       const mockResponse = {
         name: 'Chess',
         description: 'My chess courses'
@@ -93,6 +99,9 @@ describe('TopicsService', () => {
           expect(topicData.description).toEqual('My chess courses');
         });
 
+        // Spy para que con la petición GET, devolvemos el Mock
+
+      // No nos vale xk mockeamos la respuesta, no tenemos URL
       const req = httpTestingController.expectOne(topicsUrl);
 
       expect(req.request.method).toEqual('GET');
