@@ -25,9 +25,6 @@ describe('CoursesService', () => {
     expect(service).toBeTruthy();
   });
 
-  // Tests:
-  // 1. addCourse()
-  // 2. getCoursesByTopic() => la info del topic.id la tiene el TopicComponent, q es donde paso el param en el routing, igual pensar el test
   describe('#addCourse()', () => {
     it('should return Observable<any>', () => {
       const mockCourse = {
@@ -35,7 +32,6 @@ describe('CoursesService', () => {
         description: 'Space repetition to learn chess'
       };
 
-      // Lo que pasamos al addCourse es el objeto del curso del Catalog, q tiene su topicId registrado!
       service.addCourse({topicId: 1})
         .subscribe(courseData => {
           expect(courseData.name).toEqual('Chessable');

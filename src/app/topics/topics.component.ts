@@ -17,11 +17,6 @@ export class TopicsComponent implements OnDestroy {
   imgUrl: String = 'https://source.unsplash.com/800x600/?';
 
   constructor(private dialog: MatDialog, private topicsService: TopicsService) {
-    // Nos lo cargamos porque está suscrito a un BehaviorSubject, que siempre está
-    // activo...
-
-    // NORMA: Observables normalmente no los destruimos
-    //        pero sí los Subjects... xk son multicasting y se quedan abiertos
     this.obs$ = topicsService.getTopics()
       .subscribe((topicsData: Response) => {
         this.topics = topicsData;

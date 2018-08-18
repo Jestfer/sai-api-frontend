@@ -27,14 +27,12 @@ describe('TopicsService', () => {
       imports: [HttpClientTestingModule]
     });
 
-    // Inject the http service and test controller for each test
     httpClient = TestBed.get(HttpClient);
     httpTestingController = TestBed.get(HttpTestingController);
     service = TestBed.get(TopicsService);
   });
 
   afterEach(() => {
-    // Finally, we assert that there are no outstanding reqs in each test
     httpTestingController.verify();
   });
 
@@ -45,33 +43,21 @@ describe('TopicsService', () => {
   it('can test HttpClient get req', () => {
     const testData: Data = { name: 'Test Data' };
 
-    // Make an HTTP GET req
-      // httpClient.get<Data>(testUrl) : is giving warning:
-      // ERROR in src/services/topics.service.spec.ts(46,5): error TS2347: Untyped function calls may not accept type arguments.
     httpClient.get(testUrl)
       .subscribe(data =>
-        // When observable resolves, result should match testData
         expect(data).toEqual(testData)
       );
 
-    // expectOne() will match req's URL, if not, expectOne() would throw
     const req = httpTestingController.expectOne(testUrl);
 
-    // Assert that req is a GET
     expect(req.request.method).toEqual('GET');
 
-    // Respond with mock data, causing Observable to resolve
-    // Subscribe callback asserts that correct data was returned
     req.flush(testData);
   });
 
-  // 1. declare as async test since the HttpClient works with Observables ** NOT NEEDED REALLY
   it('should issue a request', async(() => {
-    // 3. send a simple request
     httpClient.get('/foo/bar').subscribe();
 
-    // 4. HttpTestingController supersedes `MockBackend` from the "old" Http package
-    // here two, it's significantly less boilerplate code needed to verify an expected request
     httpTestingController.expectOne({
       url: '/foo/bar',
       method: 'GET'
@@ -79,9 +65,7 @@ describe('TopicsService', () => {
   }));
 
   describe('#getTopics()', () => {
-    // works with simple return http.get in topics.service.ts
     it('should return a BehaviorSubject<any<Topic>>', () => {
-      // LAST: mockeamos la llamada con método GET y devolvemos esto
       const spy = spyOn(httpClient, 'get').and.returnValue([{
         name: 'Chess',
         description: 'My chess courses'
@@ -92,16 +76,12 @@ describe('TopicsService', () => {
         description: 'My chess courses'
       };
 
-      // getTopics must return Obs with mockResponse data, nos suscribimos y esperamos que sea eso
       service.getTopics()
         .subscribe(topicData => {
           expect(topicData.name).toEqual('Chess');
           expect(topicData.description).toEqual('My chess courses');
         });
 
-        // Spy para que con la petición GET, devolvemos el Mock
-
-      // No nos vale xk mockeamos la respuesta, no tenemos URL
       const req = httpTestingController.expectOne(topicsUrl);
 
       expect(req.request.method).toEqual('GET');
@@ -133,34 +113,3 @@ describe('TopicsService', () => {
 
   // TODO: refresh() => depends on getTopics()
 });
-
-
-
-
-
-
-
-
-  // describe('#getTopics()', () => {
-    // it('should return a BehaviourSubject<any<Topic>>',
-    //   inject([TopicsService, ConnectionBackend], (service: TopicsService, mockBackend) => {
-
-    //   const mockResponse = {
-    //       name: 'Chess',
-    //       decription: 'Best chess courses'
-    //   };
-
-    //   mockBackend.connections.subscribe((connection) => {
-    //     connection.mockRespond(new Response(new ResponseOptions({
-    //       body: JSON.stringify(mockResponse)
-    //     })));
-    //   });
-
-    //   service.getTopics().subscribe((topicData) => {
-    //     expect(topicData.length).toBe(1);
-    //     expect(topicData.name).toEqual('Chess');
-    //     expect(topicData.description).toEqual('Best chess courses');
-    //   });
-    // }));
-  // });
-// });
