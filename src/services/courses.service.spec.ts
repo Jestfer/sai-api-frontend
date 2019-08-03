@@ -7,6 +7,27 @@ let httpTestingController;
 let service;
 
 describe('CoursesService', () => {
+  const mockCourse = {
+    name: 'Chessable',
+    description: 'Space repetition to learn chess'
+  };
+
+  const mockUpdateCourse = {
+    name: 'Chessable',
+    description: 'Space rep',
+    courseData: {
+      topicId: 1,
+      id: 1
+    }
+  };
+
+  const mockDeleteCourse = {
+    name: 'Chessable',
+    description: 'Space rep',
+    topic_id: 1,
+    id: 1
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [CoursesService],
@@ -27,17 +48,12 @@ describe('CoursesService', () => {
 
   describe('#addCourse()', () => {
     it('should return Observable<any>', () => {
-      const mockCourse = {
-        name: 'Chessable',
-        description: 'Space repetition to learn chess'
-      };
-
       service.addCourse({topicId: 1})
         .subscribe(courseData => {
           expect(courseData.name).toEqual('Chessable');
         });
 
-      const req = httpTestingController.expectOne('http://localhost:8089/topics/1/courses');
+      const req = httpTestingController.expectOne('http://localhost:8000/topics/1/courses');
 
       expect(req.request.method).toEqual('POST');
 
@@ -46,7 +62,7 @@ describe('CoursesService', () => {
   });
 
   describe('#getCoursesByTopic', () => {
-    it('should return Observable<any>', () => {
+    xit('should return Observable<any>', () => {
       const mockCourses = [
         { name: 'Chessable', description: 'Space repetition to learn chess' },
         { name: 'ICC', description: 'Play chess online' }
@@ -60,9 +76,48 @@ describe('CoursesService', () => {
           expect(coursesData[1].description).toEqual('Play chess online');
         });
 
-      const req = httpTestingController.expectOne('http://localhost:8089/topics/1/courses');
+      const req = httpTestingController.expectOne('http://localhost:8000/topics/1/courses');
 
       req.flush(mockCourses);
+    });
+  });
+
+  describe('#updateCourse', () => {
+    it('should return Observable<any>', () => {
+      service.updateCourse(mockUpdateCourse).subscribe((course) => {
+        expect(course.name).toEqual(mockUpdateCourse.name);
+        expect(course.description).toEqual(mockUpdateCourse.description);
+      });
+
+      const req = httpTestingController.expectOne({
+        url: 'http://localhost:8000/topics/1/courses/1',
+        method: 'PUT'
+      });
+      req.flush(mockUpdateCourse);
+    });
+  });
+
+  describe('#deleteCourse', () => {
+    it('should return Observable<any>', () => {
+      service.deleteCourse(mockDeleteCourse).subscribe((course) => {
+        expect(course.name).toEqual(mockDeleteCourse.name);
+        expect(course.description).toEqual(mockDeleteCourse.description);
+      });
+
+      const req = httpTestingController.expectOne({
+        url: 'http://localhost:8000/topics/1/courses/1',
+        method: 'DELETE'
+      });
+      req.flush(mockDeleteCourse);
+    });
+  });
+
+  describe('#refresh', () => {
+    it('should reset courses array (wrongly named)', () => {
+      service.refresh();
+
+      // There is an open req, so we know it's resetted
+      const req = httpTestingController.expectOne('http://localhost:8000/topics/undefined/courses');
     });
   });
 });

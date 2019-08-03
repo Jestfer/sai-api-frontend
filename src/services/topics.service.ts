@@ -13,7 +13,7 @@ export class TopicsService {
 
   getTopics(): BehaviorSubject<any> {
     if (!this.topics.length) {
-      this.http.get('http://localhost:8089/topics')
+      this.http.get('http://localhost:8000/topics')
         .subscribe(
           (topicsData: any) => {
             this.topics = topicsData;
@@ -31,6 +31,6 @@ export class TopicsService {
   }
 
   addTopic(topic: any): Observable<any> {
-    return this.http.post<any>('http://localhost:8089/topics', topic);
+    return this.http.post<any>('http://localhost:8000/topics', topic);
   }
 }
