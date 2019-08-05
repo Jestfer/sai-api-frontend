@@ -25,7 +25,10 @@ export class CourseDialogComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnDestroy(): void {
-    this.obs$.unsubscribe();
+    // https://stackoverflow.com/questions/43350115/testing-angular-component-with-unsubscribe-error-during-cleanup-of-component
+    if (this.obs$) {
+      this.obs$.unsubscribe();
+    }
   }
 
   ngOnInit() {
@@ -43,8 +46,9 @@ export class CourseDialogComponent implements OnInit, OnDestroy {
 
   save() {
     this.dialogRef.close(this.form.value);
-    this.course.addCourse(this.form.value)
-      .subscribe(newCourse => this.courses.push(newCourse));
+    this.course.addCourse(this.form.value).subscribe(
+      newCourse => this.courses.push(newCourse)
+    );
   }
 
   close() {
